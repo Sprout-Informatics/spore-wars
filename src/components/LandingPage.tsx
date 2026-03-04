@@ -13,12 +13,11 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             An Interactive Microbiome Simulation
           </p>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-            <span className="text-slate-900">GUT</span>{' '}
-            <span className="text-teal-700">CHECK</span>
+            <span className="text-slate-900">SPORE</span>{' '}
+            <span className="text-teal-700">WARS</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Why more antibiotics can make things worse &mdash; and how a
-            radical idea changed everything.
+            When Bugs Go Bad: How Antibiotics Can Pave the Way for Opportunistic Bacteria and Deadly Infections
           </p>
         </div>
       </header>
@@ -30,27 +29,30 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             A Silent Epidemic
           </h2>
           <p>
-            Every year, <em>Clostridioides difficile</em> infects nearly{' '}
-            <strong className="text-slate-900">500,000 Americans</strong> and kills roughly{' '}
-            <strong className="text-slate-900">30,000</strong>. It is the most common
-            healthcare-associated infection in the United States. But the most
-            alarming part isn't the first infection &mdash; it's what comes after.
+            Every year, nearly <b>half a million Americans</b> experience
+            <em> Clostridioides difficile</em> infections, and nearly 
+            <b> 30,000</b> die from them. <b>It is the most common
+            healthcare-associated infection in the United States.</b>
           </p>
           <p>
-            The standard treatment is straightforward: prescribe antibiotics to
-            kill the pathogen. And it works &mdash; at first. Symptoms resolve.
-            The patient goes home. Then, weeks later, the infection comes roaring
-            back.
+            The standard of care is a course of antibiotics to kill the pathogen. 
+            The antibiotics kill the active <i>C. difficile</i> and the patient feels better. 
+            Symptoms resolve. The patient goes home.
           </p>
           <p>
-            Up to <strong className="text-slate-900">35% of patients</strong> experience
-            recurrence after their first episode. For those who recur once, the
-            odds of it happening again climb to{' '}
-            <strong className="text-slate-900">60%</strong>. Some patients cycle
-            through four, five, six rounds of antibiotics, each time hoping
-            this course will be the last.
+            But the antibiotics also wipe out the recovering "good guy" bacteria, leaving the gut empty again. 
+            <i>C. difficile</i> spores, which are resistant to antibiotics, survive. 
+            When the course of antibiotics ends, the spores germinate into that empty niche 
+            and the infection returns.
           </p>
-          <p>It rarely is.</p>
+          <p>
+            Up to <b>35%</b> of patients who get a first <i>C. difficile</i> infection will 
+            have a recurrence, and after a first recurrence, the <b>risk of further recurrences rises to 60%</b>.
+            Some patients cycle through four, five, six rounds of antibiotics.
+          </p>
+          <p>
+            Some patients don't make it.
+          </p>
         </div>
       </section>
 
@@ -63,16 +65,16 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           <div className="space-y-6 text-lg leading-relaxed text-slate-600">
             <p>
               The human gut is home to trillions of bacteria &mdash; a dense,
-              competitive ecosystem where hundreds of species vie for space and
+              competitive ecosystem where hundreds or thousands of species vie for space and
               nutrients. In a healthy gut, this community acts as a living
               barrier: commensal bacteria physically crowd out pathogens like{' '}
-              <em>C. difficile</em>, compete for resources, and produce
+              <i>C. difficile</i>, compete for resources, and produce
               antimicrobial compounds including secondary bile acids that
               suppress its growth.
             </p>
             <p>
               Antibiotics shatter this ecosystem. They don't just kill{' '}
-              <em>C. difficile</em> &mdash; they kill the beneficial bacteria
+              <i>C. difficile</i> &mdash; they kill the beneficial bacteria
               too. And here's the cruel trick:{' '}
               <em>C. difficile</em> produces <strong className="text-slate-900">spores</strong>,
               dormant survival structures that antibiotics cannot touch.
