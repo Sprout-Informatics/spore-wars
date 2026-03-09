@@ -15,7 +15,7 @@ export function SimulationProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(simulationReducer, null, () => {
     const seed = Date.now()
     const rng = createRNG(seed)
-    return { simulation: createInitialState(rng, seed) }
+    return { simulation: createInitialState(rng, seed), lastSample: null }
   })
 
   return (
