@@ -1,9 +1,11 @@
 import type { SimulationState, PlayerAction } from '../simulation/types'
 import { createRNG } from '../simulation/random'
 import { createInitialState, applyAction, tick } from '../simulation/engine'
+import { takeSample, type SampleResult } from '../simulation/sequenceSampler'
 
 export interface AppState {
   simulation: SimulationState
+  lastSample: SampleResult | null
 }
 
 export type AppAction =
@@ -12,6 +14,7 @@ export type AppAction =
   | { type: 'ADVANCE_ONE_TICK' }
   | { type: 'ADVANCE_WEEK' }
   | { type: 'SET_VIRULENCE'; virulence: number }
+  | { type: 'TAKE_SAMPLE' }
   | { type: 'RESET' }
 
 export function simulationReducer(state: AppState, action: AppAction): AppState {
@@ -19,7 +22,7 @@ export function simulationReducer(state: AppState, action: AppAction): AppState 
     case 'INIT_SIMULATION': {
       const seed = action.seed ?? Date.now()
       const rng = createRNG(seed)
-      return { simulation: createInitialState(rng, seed, action.virulence) }
+      return { simulation: createInitialState(rng, seed, action.virulence), lastSample: null }
     }
 
     case 'PLAYER_ACTION': {
@@ -29,13 +32,13 @@ export function simulationReducer(state: AppState, action: AppAction): AppState 
       // Advance one tick after applying the action
       const tickRng = createRNG(state.simulation.rngSeed + sim.tick + 1)
       sim = tick(sim, tickRng)
-      return { simulation: sim }
+      return { ...state, simulation: sim }
     }
 
     case 'ADVANCE_ONE_TICK': {
       if (state.simulation.outcome) return state
       const rng = createRNG(state.simulation.rngSeed + state.simulation.tick)
-      return { simulation: tick(state.simulation, rng) }
+      return { ...state, simulation: tick(state.simulation, rng) }
     }
 
     case 'ADVANCE_WEEK': {
@@ -46,19 +49,26 @@ export function simulationReducer(state: AppState, action: AppAction): AppState 
         const rng = createRNG(sim.rngSeed + sim.tick)
         sim = tick(sim, rng)
       }
-      return { simulation: sim }
+      return { ...state, simulation: sim }
     }
 
     case 'SET_VIRULENCE': {
       return {
+        ...state,
         simulation: { ...state.simulation, cdiffVirulence: action.virulence },
       }
+    }
+
+    case 'TAKE_SAMPLE': {
+      const rng = createRNG(state.simulation.rngSeed + state.simulation.tick + 999)
+      const sample = takeSample(state.simulation, rng)
+      return { ...state, lastSample: sample }
     }
 
     case 'RESET': {
       const seed = Date.now()
       const rng = createRNG(seed)
-      return { simulation: createInitialState(rng, seed, state.simulation.cdiffVirulence) }
+      return { simulation: createInitialState(rng, seed, state.simulation.cdiffVirulence), lastSample: null }
     }
   }
 }

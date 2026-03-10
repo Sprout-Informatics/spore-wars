@@ -8,6 +8,7 @@ import TimeControls from './TimeControls'
 import EventLog from './EventLog'
 import GameSummary from './GameSummary'
 import ParameterSliders from './ParameterSliders'
+import SequenceSampler from './SequenceSampler'
 
 export default function PatientDashboard() {
   const { state } = useSimulation()
@@ -40,9 +41,10 @@ export default function PatientDashboard() {
           <TimeControls />
         </div>
 
-        {/* Treatment Controls */}
-        <div className="mb-6">
+        {/* Treatment Controls and Sequence Sampler */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <TreatmentControls />
+          <SequenceSampler />
         </div>
 
         {/* Event Log */}
