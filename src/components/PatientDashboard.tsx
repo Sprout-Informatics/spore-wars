@@ -42,13 +42,9 @@ export default function PatientDashboard() {
           </div>
           <div className="md:col-span-1 flex flex-col gap-4">
             <TreatmentControls />
+            <TimeControls />
             <SequenceSampler />
           </div>
-        </div>
-
-        {/* Time Controls */}
-        <div className="mb-6">
-          <TimeControls />
         </div>
 
         {/* Event Log */}
