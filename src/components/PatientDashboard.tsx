@@ -15,8 +15,8 @@ export default function PatientDashboard() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">GUT CHECK</h1>
-            <p className="text-sm text-gray-500">The Microbiome Game — Why More Antibiotics Can Make Things Worse</p>
+            <h1 className="text-3xl font-bold text-gray-900">SPORE WARS</h1>
+            <p className="text-sm text-gray-500">The Microbiome Game</p>
           </div>
         </div>
 
