@@ -1,12 +1,52 @@
+import { useState, useEffect } from 'react'
+
 interface LandingPageProps {
   onStart: () => void
 }
 
 export default function LandingPage({ onStart }: LandingPageProps) {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 80)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="min-h-screen bg-white text-slate-800">
+      {/* Floating Nav */}
+      <nav
+        className={`fixed top-0 inset-x-0 z-50 transition-transform duration-300 bg-white/95 backdrop-blur shadow-sm border-b border-slate-100 ${
+          scrolled ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+          <a
+            href="#top"
+            className="font-extrabold tracking-tight text-sm"
+            onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+          >
+            <span className="text-slate-900">SPORE</span>{' '}
+            <span className="text-teal-700">WARS</span>
+          </a>
+          <div className="flex items-center gap-1 text-sm">
+            <a href="#epidemic" className="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors hidden sm:block">The Problem</a>
+            <a href="#trap" className="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors hidden md:block">The Trap</a>
+            <a href="#breakthrough" className="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors hidden md:block">Breakthrough</a>
+            <a href="#simulate" className="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors hidden sm:block">Simulate</a>
+            <button
+              onClick={onStart}
+              className="ml-2 px-4 py-1.5 bg-teal-700 hover:bg-teal-600 text-white font-semibold rounded-lg text-sm transition-colors cursor-pointer"
+            >
+              Start →
+            </button>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <header className="relative overflow-hidden">
+      <header id="top" className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-slate-50" />
         <div className="relative max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
@@ -25,30 +65,30 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </header>
 
       {/* The Problem */}
-      <section className="max-w-3xl mx-auto px-6 py-16">
+      <section id="epidemic" className="max-w-3xl mx-auto px-6 py-16">
         <div className="space-y-6 text-lg leading-relaxed text-slate-600">
           <h2 className="text-3xl font-bold text-slate-900 mb-8">
             A Silent Epidemic
           </h2>
           <p>
             Every year, nearly <b>half a million Americans</b> experience
-            <em> Clostridioides difficile</em> infections, and nearly 
+            <em> Clostridioides difficile</em> infections, and nearly
             <b> 30,000</b> die from them. <b>It is the most common
             healthcare-associated infection in the United States.</b>
           </p>
           <p>
-            The standard of care is a course of antibiotics to kill the pathogen. 
-            The antibiotics kill the active <i>C. difficile</i> and the patient feels better. 
+            The standard of care is a course of antibiotics to kill the pathogen.
+            The antibiotics kill the active <i>C. difficile</i> and the patient feels better.
             Symptoms resolve. The patient goes home.
           </p>
           <p>
-            But the antibiotics also wipe out the recovering "good guy" bacteria, leaving the gut empty again. 
-            <i>C. difficile</i> spores, which are resistant to antibiotics, survive. 
-            When the course of antibiotics ends, the spores germinate into that empty niche 
+            But the antibiotics also wipe out the recovering "good guy" bacteria, leaving the gut empty again.
+            <i>C. difficile</i> spores, which are resistant to antibiotics, survive.
+            When the course of antibiotics ends, the spores germinate into that empty niche
             and the infection returns.
           </p>
           <p>
-            Up to <b>35%</b> of patients who get a first <i>C. difficile</i> infection will 
+            Up to <b>35%</b> of patients who get a first <i>C. difficile</i> infection will
             have a recurrence, and after a first recurrence, the <b>risk of further recurrences rises to 60%</b>.
             Some patients cycle through four, five, six rounds of antibiotics.
           </p>
@@ -59,7 +99,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* The Trap */}
-      <section className="bg-teal-50">
+      <section id="trap" className="bg-teal-50">
         <div className="max-w-3xl mx-auto px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 mb-8">
             The Antibiotic Trap
@@ -120,7 +160,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* The Breakthrough */}
-      <section className="max-w-3xl mx-auto px-6 py-16">
+      <section id="breakthrough" className="max-w-3xl mx-auto px-6 py-16">
         <h2 className="text-3xl font-bold text-slate-900 mb-8">
           A Different Kind of Medicine
         </h2>
@@ -173,7 +213,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* The Simulation */}
-      <section className="bg-teal-50">
+      <section id="simulate" className="bg-teal-50">
         <div className="max-w-3xl mx-auto px-6 py-16 text-center">
           <h2 className="text-3xl font-bold text-slate-900 mb-6">
             Experience It Yourself
