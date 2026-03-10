@@ -9,7 +9,11 @@ import SequenceSampler from './SequenceSampler'
 import { useSimulation } from '../state/SimulationContext'
 import { DEFAULTS } from '../simulation/constants'
 
-export default function PatientDashboard() {
+interface PatientDashboardProps {
+  onBack: () => void
+}
+
+export default function PatientDashboard({ onBack }: PatientDashboardProps) {
   const { state } = useSimulation()
   const day = state.simulation.tick
 
@@ -22,6 +26,12 @@ export default function PatientDashboard() {
             <h1 className="text-3xl font-bold text-gray-900">SPORE WARS</h1>
             <p className="text-sm text-gray-500">The Microbiome Game</p>
           </div>
+          <button
+            onClick={onBack}
+            className="self-start md:self-auto flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 transition-colors"
+          >
+            ← Back to Landing
+          </button>
         </div>
 
         {/* Patient Status Row */}
@@ -57,7 +67,7 @@ export default function PatientDashboard() {
         <ParameterSliders />
 
         {/* Game Summary Modal */}
-        <GameSummary />
+        <GameSummary onBack={onBack} />
 
         {/* Disclaimer */}
         <footer className="mt-8 py-6 text-center text-xs text-gray-400 border-t border-gray-200">

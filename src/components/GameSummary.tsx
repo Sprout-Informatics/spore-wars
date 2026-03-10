@@ -1,6 +1,10 @@
 import { useSimulation } from '../state/SimulationContext'
 
-export default function GameSummary() {
+interface GameSummaryProps {
+  onBack: () => void
+}
+
+export default function GameSummary({ onBack }: GameSummaryProps) {
   const { state, dispatch } = useSimulation()
   const sim = state.simulation
 
@@ -76,14 +80,22 @@ export default function GameSummary() {
           {educationalMessage}
         </p>
 
-        <button
-          onClick={() => dispatch({ type: 'RESET' })}
-          className={`w-full py-3 rounded-lg font-semibold text-white transition-colors ${
-            isGood ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'
-          }`}
-        >
-          Try Again
-        </button>
+        <div className="flex flex-col gap-2">
+          <button
+            onClick={() => dispatch({ type: 'RESET' })}
+            className={`w-full py-3 rounded-lg font-semibold text-white transition-colors ${
+              isGood ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'
+            }`}
+          >
+            Try Again
+          </button>
+          <button
+            onClick={onBack}
+            className="w-full py-3 rounded-lg font-semibold text-gray-600 bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
+          >
+            ← Back to Landing
+          </button>
+        </div>
       </div>
     </div>
   )
