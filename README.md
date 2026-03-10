@@ -149,3 +149,5 @@ npm run dev
 2. **C. diff exploits an empty niche.** The pathogen isn't unusually virulent — it's opportunistic. It wins when the competition is gone.
 3. **Colonization resistance is the real defense.** A diverse, healthy microbiome is what keeps C. diff in check, not the absence of C. diff itself.
 4. **Microbiome therapeutics restore the ecosystem.** Rather than killing the pathogen, they repopulate the gut with commensals that outcompete C. diff — breaking the cycle of recurrence.
+
+**Disclaimer:** This is an educational exercise only. Spore Wars is not affiliated with Seres Therapeutics and is not related to, endorsed by, or representative of the actual VOWST™ product in any way. All simulation mechanics are simplified for educational purposes.
