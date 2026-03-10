@@ -222,12 +222,8 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* Footer */}
-      <footer className="max-w-3xl mx-auto px-6 py-10 text-center text-sm text-slate-400 space-y-3">
+      <footer className="max-w-3xl mx-auto px-6 py-10 text-center text-xs text-slate-400">
         <p>
-          Spore Wars is an educational simulation. It is not medical advice.
-          Clinical decisions should always be made with a healthcare provider.
-        </p>
-        <p className="text-xs text-slate-400 border-t border-slate-200 pt-3">
           <strong>Disclaimer:</strong> This is an educational exercise only. Spore Wars is not affiliated
           with Seres Therapeutics and is not related to, endorsed by, or representative of the actual
           VOWST&trade; product in any way. All simulation mechanics are simplified for educational purposes.
