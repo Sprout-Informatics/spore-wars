@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { SimulationProvider } from './state/SimulationContext'
+import { ThemeProvider } from './context/ThemeContext'
 import PatientDashboard from './components/PatientDashboard'
 import LandingPage from './components/LandingPage'
 
@@ -23,14 +24,16 @@ function App() {
     window.history.back()
   }
 
-  if (!started) {
-    return <LandingPage onStart={handleStart} />
-  }
-
   return (
-    <SimulationProvider>
-      <PatientDashboard onBack={handleBack} />
-    </SimulationProvider>
+    <ThemeProvider>
+      {!started ? (
+        <LandingPage onStart={handleStart} />
+      ) : (
+        <SimulationProvider>
+          <PatientDashboard onBack={handleBack} />
+        </SimulationProvider>
+      )}
+    </ThemeProvider>
   )
 }
 

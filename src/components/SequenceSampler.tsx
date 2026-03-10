@@ -4,9 +4,9 @@ import { useSimulation } from '../state/SimulationContext'
 const BLAST_URL = 'https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome'
 
 const CATEGORY_LABELS: Record<string, { label: string; color: string; bg: string }> = {
-  commensal: { label: 'Host Commensal Bacteria', color: 'text-green-700', bg: 'bg-green-50 border-green-200' },
-  ser109: { label: 'SER-109 / Vowst Therapeutic Bacteria', color: 'text-blue-700', bg: 'bg-blue-50 border-blue-200' },
-  cdiff: { label: 'Clostridioides difficile', color: 'text-red-700', bg: 'bg-red-50 border-red-200' },
+  commensal: { label: 'Host Commensal Bacteria', color: 'text-green-700 dark:text-green-400', bg: 'bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800' },
+  ser109: { label: 'SER-109 / Vowst Therapeutic Bacteria', color: 'text-blue-700 dark:text-blue-400', bg: 'bg-blue-50 border-blue-200 dark:bg-blue-950 dark:border-blue-800' },
+  cdiff: { label: 'Clostridioides difficile', color: 'text-red-700 dark:text-red-400', bg: 'bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800' },
 }
 
 export default function SequenceSampler() {
@@ -39,18 +39,18 @@ export default function SequenceSampler() {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
       <div className="flex items-center justify-between mb-3">
         <div>
-          <h3 className="text-sm font-semibold text-gray-700">Gut Sample — DNA Sequencing</h3>
-          <p className="text-xs text-gray-500 mt-0.5">
+          <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Gut Sample — DNA Sequencing</h3>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
             Take a stool sample and sequence it to identify which bacteria are present.
           </p>
         </div>
         <button
           onClick={handleTakeSample}
           disabled={state.simulation.outcome !== null}
-          className="px-3 py-2 text-sm font-semibold rounded-lg border-2 border-purple-300 bg-purple-50 hover:bg-purple-100 disabled:opacity-40 disabled:cursor-not-allowed text-purple-800 transition-colors whitespace-nowrap"
+          className="px-3 py-2 text-sm font-semibold rounded-lg border-2 border-purple-300 bg-purple-50 hover:bg-purple-100 dark:border-purple-700 dark:bg-purple-950 dark:hover:bg-purple-900 disabled:opacity-40 disabled:cursor-not-allowed text-purple-800 dark:text-purple-300 transition-colors whitespace-nowrap"
         >
           Take Sample
         </button>
@@ -60,12 +60,12 @@ export default function SequenceSampler() {
         <div className="space-y-3">
           {/* Sample metadata */}
           <div className="flex items-center justify-between">
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-gray-500 dark:text-gray-400">
               {samples.length} sequences collected on Day {samples[0].tick} · 16S rRNA gene · ~{samples[0].sequenceEnd - samples[0].sequenceStart} bp each
             </div>
             <button
               onClick={handleCopyAll}
-              className="px-2 py-1 text-xs rounded bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors border border-gray-300"
+              className="px-2 py-1 text-xs rounded bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-300 transition-colors border border-gray-300 dark:border-gray-600"
             >
               {copiedIndex === 'all' ? 'Copied!' : 'Copy All'}
             </button>
@@ -75,7 +75,7 @@ export default function SequenceSampler() {
           <div className="space-y-2">
             {samples.map((sample, index) => (
               <div key={index}>
-                <div className="text-xs text-gray-400 mb-0.5">Sequence {index + 1}</div>
+                <div className="text-xs text-gray-400 dark:text-gray-500 mb-0.5">Sequence {index + 1}</div>
                 <div className="relative">
                   <pre className="bg-gray-900 text-green-400 rounded-lg p-3 text-xs font-mono overflow-x-auto whitespace-pre-wrap leading-relaxed max-h-32 overflow-y-auto">
                     {sample.fastaSequence}
@@ -92,7 +92,7 @@ export default function SequenceSampler() {
           </div>
 
           {/* BLAST instructions */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-800 space-y-1">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-800 dark:bg-blue-950 dark:border-blue-800 dark:text-blue-300 space-y-1">
             <div className="font-semibold">How to identify these sequences:</div>
             <ol className="list-decimal list-inside space-y-1 pl-1">
               <li>Copy a FASTA sequence above (or copy all)</li>
@@ -111,7 +111,7 @@ export default function SequenceSampler() {
               <li>Look at the top hits — what organism does this match?</li>
               <li>Is it a gut commensal, a SER-109 therapeutic bacteria, or <em>C. diff</em>?</li>
             </ol>
-            <p className="mt-2 italic text-blue-600">
+            <p className="mt-2 italic text-blue-600 dark:text-blue-400">
               Each sequence is sampled proportional to bacterial abundance — more abundant species appear more often across the 10 sequences.
             </p>
           </div>
@@ -120,7 +120,7 @@ export default function SequenceSampler() {
           <div>
             <button
               onClick={() => setShowAnswer(!showAnswer)}
-              className="text-xs text-gray-400 hover:text-gray-600 underline transition-colors"
+              className="text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 underline transition-colors"
             >
               {showAnswer ? 'Hide answers' : 'Reveal answers (educators only)'}
             </button>
@@ -130,10 +130,10 @@ export default function SequenceSampler() {
                   const catStyle = CATEGORY_LABELS[sample.category] ?? { label: sample.category, color: 'text-gray-700', bg: 'bg-gray-50 border-gray-200' }
                   return (
                     <div key={index} className={`rounded-lg border p-2 text-xs ${catStyle.bg}`}>
-                      <span className="text-gray-400 mr-2">#{index + 1}</span>
+                      <span className="text-gray-400 dark:text-gray-500 mr-2">#{index + 1}</span>
                       <span className={`font-bold ${catStyle.color}`}>{catStyle.label}</span>
-                      <span className="text-gray-600 ml-2">— {sample.displayName}</span>
-                      <span className="text-gray-400 ml-2">({sample.sequenceStart}–{sample.sequenceEnd} bp)</span>
+                      <span className="text-gray-600 dark:text-gray-400 ml-2">— {sample.displayName}</span>
+                      <span className="text-gray-400 dark:text-gray-500 ml-2">({sample.sequenceStart}–{sample.sequenceEnd} bp)</span>
                     </div>
                   )
                 })}
@@ -142,7 +142,7 @@ export default function SequenceSampler() {
           </div>
         </div>
       ) : (
-        <div className="text-center py-6 text-gray-400 text-sm">
+        <div className="text-center py-6 text-gray-400 dark:text-gray-500 text-sm">
           <div className="text-2xl mb-2">🔬</div>
           <div>No sample taken yet. Click "Take Sample" to collect a specimen.</div>
           <div className="text-xs mt-1">

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import ThemeToggle from './ThemeToggle'
 
 interface LandingPageProps {
   onStart: () => void
@@ -14,10 +15,10 @@ export default function LandingPage({ onStart }: LandingPageProps) {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white text-slate-800">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-slate-800 dark:text-slate-200">
       {/* Floating Nav */}
       <nav
-        className={`fixed top-0 inset-x-0 z-50 transition-transform duration-300 bg-white/95 backdrop-blur shadow-sm border-b border-slate-100 ${
+        className={`fixed top-0 inset-x-0 z-50 transition-transform duration-300 bg-white/95 dark:bg-gray-900/95 backdrop-blur shadow-sm border-b border-slate-100 dark:border-gray-800 ${
           scrolled ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
@@ -27,14 +28,15 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             className="font-extrabold tracking-tight text-sm"
             onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
           >
-            <span className="text-slate-900">SPORE</span>{' '}
-            <span className="text-teal-700">WARS</span>
+            <span className="text-slate-900 dark:text-white">SPORE</span>{' '}
+            <span className="text-teal-700 dark:text-teal-400">WARS</span>
           </a>
           <div className="flex items-center gap-1 text-sm">
-            <a href="#epidemic" className="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors hidden sm:block">The Problem</a>
-            <a href="#trap" className="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors hidden md:block">The Trap</a>
-            <a href="#breakthrough" className="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors hidden md:block">Breakthrough</a>
-            <a href="#simulate" className="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors hidden sm:block">Simulate</a>
+            <a href="#epidemic" className="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors hidden sm:block">The Problem</a>
+            <a href="#trap" className="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors hidden md:block">The Trap</a>
+            <a href="#breakthrough" className="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors hidden md:block">Breakthrough</a>
+            <a href="#simulate" className="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors hidden sm:block">Simulate</a>
+            <ThemeToggle />
             <button
               onClick={onStart}
               className="ml-2 px-4 py-1.5 bg-teal-700 hover:bg-teal-600 text-white font-semibold rounded-lg text-sm transition-colors cursor-pointer"
@@ -47,18 +49,22 @@ export default function LandingPage({ onStart }: LandingPageProps) {
 
       {/* Hero Section */}
       <header id="top" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-slate-50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-slate-50 dark:from-teal-950 dark:via-gray-900 dark:to-slate-950" />
         <div className="relative max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
+          {/* Theme toggle for non-scrolled state */}
+          <div className="absolute top-4 right-6">
+            <ThemeToggle />
+          </div>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-            <span className="text-slate-900">SPORE</span>{' '}
-            <span className="text-teal-700">WARS</span>
+            <span className="text-slate-900 dark:text-white">SPORE</span>{' '}
+            <span className="text-teal-700 dark:text-teal-400">WARS</span>
           </h1>
           <img
             src={`${import.meta.env.BASE_URL}images/spore_wars2.png`}
             alt="Spore Wars — a Star Wars-themed spore illustration"
             className="mx-auto my-6 max-w-xs md:max-w-sm w-full rounded-xl shadow-md"
           />
-          <p className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
             When Bugs Go Bad: How Antibiotics Can Pave the Way for Opportunistic Bacteria and Deadly Infections
           </p>
         </div>
@@ -66,8 +72,8 @@ export default function LandingPage({ onStart }: LandingPageProps) {
 
       {/* The Problem */}
       <section id="epidemic" className="max-w-3xl mx-auto px-6 py-16">
-        <div className="space-y-6 text-lg leading-relaxed text-slate-600">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">
+        <div className="space-y-6 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
             A Silent Epidemic
           </h2>
           <p>
@@ -99,12 +105,12 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* The Trap */}
-      <section id="trap" className="bg-teal-50">
+      <section id="trap" className="bg-teal-50 dark:bg-gray-800">
         <div className="max-w-3xl mx-auto px-6 py-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
             The Antibiotic Trap
           </h2>
-          <div className="space-y-6 text-lg leading-relaxed text-slate-600">
+          <div className="space-y-6 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
             <p>
               The human gut is home to trillions of bacteria &mdash; a dense,
               competitive ecosystem where hundreds or thousands of species vie for space and
@@ -118,31 +124,31 @@ export default function LandingPage({ onStart }: LandingPageProps) {
               Antibiotics destroy this ecosystem. They don't just kill{' '}
               <i>C. difficile</i> &mdash; they kill the beneficial bacteria
               too. And here's the cruel trick:{' '}
-              <em>C. difficile</em> produces <strong className="text-slate-900">spores</strong>,
+              <em>C. difficile</em> produces <strong className="text-slate-900 dark:text-white">spores</strong>,
               dormant survival structures that antibiotics cannot touch.
             </p>
 
             <div className="my-10 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-sm">
+              <div className="bg-white dark:bg-gray-700 border border-slate-200 dark:border-gray-600 rounded-xl p-5 text-center shadow-sm">
                 <div className="text-3xl mb-3">💊</div>
-                <h3 className="font-semibold text-amber-600 mb-2">Antibiotics Kill</h3>
-                <p className="text-sm text-slate-500">
+                <h3 className="font-semibold text-amber-600 dark:text-amber-400 mb-2">Antibiotics Kill</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   Both the pathogen <em>and</em> the protective commensal bacteria
                   are wiped out.
                 </p>
               </div>
-              <div className="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-sm">
+              <div className="bg-white dark:bg-gray-700 border border-slate-200 dark:border-gray-600 rounded-xl p-5 text-center shadow-sm">
                 <div className="text-3xl mb-3">🦠</div>
-                <h3 className="font-semibold text-red-600 mb-2">Spores Survive</h3>
-                <p className="text-sm text-slate-500">
+                <h3 className="font-semibold text-red-600 dark:text-red-400 mb-2">Spores Survive</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   <em>C. difficile</em> spores lie dormant, impervious to
                   antibiotics, waiting.
                 </p>
               </div>
-              <div className="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-sm">
+              <div className="bg-white dark:bg-gray-700 border border-slate-200 dark:border-gray-600 rounded-xl p-5 text-center shadow-sm">
                 <div className="text-3xl mb-3">🔄</div>
-                <h3 className="font-semibold text-orange-600 mb-2">Recurrence</h3>
-                <p className="text-sm text-slate-500">
+                <h3 className="font-semibold text-orange-600 dark:text-orange-400 mb-2">Recurrence</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   With no competition, spores germinate and the infection
                   returns &mdash; often worse than before.
                 </p>
@@ -161,24 +167,24 @@ export default function LandingPage({ onStart }: LandingPageProps) {
 
       {/* The Breakthrough */}
       <section id="breakthrough" className="max-w-3xl mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold text-slate-900 mb-8">
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
           A Different Kind of Medicine
         </h2>
-        <div className="space-y-6 text-lg leading-relaxed text-slate-600">
+        <div className="space-y-6 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
           <p>
             What if the answer wasn't to keep killing the pathogen, but to
             restore the ecosystem that keeps it in check?
           </p>
           <p>
             This was the question that drove{' '}
-            <a href="https://www.serestherapeutics.com" target="_blank" rel="noopener noreferrer" className="text-teal-700 hover:underline"><strong className="text-teal-700">Seres Therapeutics</strong></a>, a
+            <a href="https://www.serestherapeutics.com" target="_blank" rel="noopener noreferrer" className="text-teal-700 dark:text-teal-400 hover:underline"><strong className="text-teal-700 dark:text-teal-400">Seres Therapeutics</strong></a>, a
             Cambridge, Massachusetts biotech company founded on a deceptively
             simple insight: the microbiome itself is the medicine. Rather than
             designing a molecule to attack <em>C. difficile</em>, they set out
             to rebuild the bacterial community that naturally suppresses it.
           </p>
           <p>
-            Their lead candidate, <strong className="text-slate-900">SER-109</strong>,
+            Their lead candidate, <strong className="text-slate-900 dark:text-white">SER-109</strong>,
             was a defined consortium of purified bacterial spores derived from
             healthy donor stool. Not a fecal transplant &mdash; a manufactured,
             quality-controlled therapeutic delivered as an oral capsule. The
@@ -186,15 +192,15 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             by restoring an ecology rather than targeting a pathogen.
           </p>
 
-          <div className="my-10 border-l-4 border-teal-500 bg-teal-50 rounded-r-xl p-6">
-            <p className="text-teal-700 font-semibold mb-2">
+          <div className="my-10 border-l-4 border-teal-500 bg-teal-50 dark:bg-teal-950 rounded-r-xl p-6">
+            <p className="text-teal-700 dark:text-teal-400 font-semibold mb-2">
               The ECOSPOR III Trial
             </p>
-            <p className="text-slate-600">
+            <p className="text-slate-600 dark:text-slate-400">
               In a pivotal Phase 3 trial, SER-109 reduced recurrence of{' '}
               <em>C. difficile</em> infection to{' '}
-              <strong className="text-slate-900">12%</strong>, compared to{' '}
-              <strong className="text-slate-900">40%</strong> for placebo &mdash; a
+              <strong className="text-slate-900 dark:text-white">12%</strong>, compared to{' '}
+              <strong className="text-slate-900 dark:text-white">40%</strong> for placebo &mdash; a
               relative risk reduction of 68%. For patients trapped in the
               recurrence cycle, this was transformative.
             </p>
@@ -202,7 +208,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
 
           <p>
             In April 2023, the FDA approved SER-109 under the brand name{' '}
-            <strong className="text-slate-900">VOWST</strong><sup>&trade;</sup>,
+            <strong className="text-slate-900 dark:text-white">VOWST</strong><sup>&trade;</sup>,
             making it the first FDA-approved oral microbiome therapeutic. It
             marked a milestone not just for <em>C. difficile</em> treatment,
             but for the entire field of microbiome medicine &mdash; proof that
@@ -213,14 +219,14 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* The Simulation */}
-      <section id="simulate" className="bg-teal-50">
+      <section id="simulate" className="bg-teal-50 dark:bg-gray-800">
         <div className="max-w-3xl mx-auto px-6 py-16 text-center">
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
             Experience It Yourself
           </h2>
-          <div className="space-y-6 text-lg leading-relaxed text-slate-600 text-left mb-10">
+          <div className="space-y-6 text-lg leading-relaxed text-slate-600 dark:text-slate-400 text-left mb-10">
             <p>
-              <strong className="text-slate-900">Spore Wars</strong> is an
+              <strong className="text-slate-900 dark:text-white">Spore Wars</strong> is an
               interactive simulation that lets you manage a patient with
               recurrent <em>C. difficile</em> infection over 180 days. You'll
               decide when to prescribe antibiotics, when to administer
@@ -251,7 +257,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* Footer */}
-      <footer className="max-w-3xl mx-auto px-6 py-10 text-center text-xs text-slate-400">
+      <footer className="max-w-3xl mx-auto px-6 py-10 text-center text-xs text-slate-400 dark:text-slate-500">
         <p>
           <strong>Disclaimer:</strong> This is an educational exercise only. Spore Wars is not affiliated
           with Seres Therapeutics and is not related to, endorsed by, or representative of the actual

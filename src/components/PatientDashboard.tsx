@@ -6,6 +6,7 @@ import EventLog from './EventLog'
 import GameSummary from './GameSummary'
 import ParameterSliders from './ParameterSliders'
 import SequenceSampler from './SequenceSampler'
+import ThemeToggle from './ThemeToggle'
 import { useSimulation } from '../state/SimulationContext'
 import { DEFAULTS } from '../simulation/constants'
 
@@ -18,20 +19,23 @@ export default function PatientDashboard({ onBack }: PatientDashboardProps) {
   const day = state.simulation.tick
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">SPORE WARS</h1>
-            <p className="text-sm text-gray-500">The Microbiome Game</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">SPORE WARS</h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400">The Microbiome Game</p>
           </div>
-          <button
-            onClick={onBack}
-            className="self-start md:self-auto flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 transition-colors"
-          >
-            ← Back to Landing
-          </button>
+          <div className="flex items-center gap-2 self-start md:self-auto">
+            <ThemeToggle />
+            <button
+              onClick={onBack}
+              className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+            >
+              ← Back to Landing
+            </button>
+          </div>
         </div>
 
         {/* Patient Status Row */}
@@ -39,10 +43,10 @@ export default function PatientDashboard({ onBack }: PatientDashboardProps) {
           <div className="md:col-span-2">
             <HealthScoreBar />
           </div>
-          <div className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center">
-            <span className="text-sm font-medium text-gray-600">Day</span>
-            <p className="text-3xl font-bold text-gray-900">{day}</p>
-            <span className="text-xs text-gray-400">/ {DEFAULTS.MAX_SIMULATION_TICKS}</span>
+          <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col items-center justify-center">
+            <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Day</span>
+            <p className="text-3xl font-bold text-gray-900 dark:text-white">{day}</p>
+            <span className="text-xs text-gray-400 dark:text-gray-500">/ {DEFAULTS.MAX_SIMULATION_TICKS}</span>
           </div>
         </div>
 
@@ -70,7 +74,7 @@ export default function PatientDashboard({ onBack }: PatientDashboardProps) {
         <GameSummary onBack={onBack} />
 
         {/* Disclaimer */}
-        <footer className="mt-8 py-6 text-center text-xs text-gray-400 border-t border-gray-200">
+        <footer className="mt-8 py-6 text-center text-xs text-gray-400 dark:text-gray-500 border-t border-gray-200 dark:border-gray-700">
           <p>
             <strong>Disclaimer:</strong> This is an educational exercise only. Spore Wars is not affiliated
             with Seres Therapeutics and is not related to, endorsed by, or representative of the actual

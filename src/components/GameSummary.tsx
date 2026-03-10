@@ -43,40 +43,40 @@ export default function GameSummary({ onBack }: GameSummaryProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className={`max-w-lg w-full rounded-xl shadow-2xl p-8 ${isGood ? 'bg-green-50' : 'bg-red-50'}`}>
-        <h2 className={`text-2xl font-bold mb-4 ${isGood ? 'text-green-800' : 'text-red-800'}`}>
+      <div className={`max-w-lg w-full rounded-xl shadow-2xl p-8 ${isGood ? 'bg-green-50 dark:bg-green-950' : 'bg-red-50 dark:bg-red-950'}`}>
+        <h2 className={`text-2xl font-bold mb-4 ${isGood ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300'}`}>
           {title}
         </h2>
 
-        <div className="bg-white/70 rounded-lg p-4 mb-4 text-center">
-          <span className="text-xs text-gray-500">Patient Score</span>
-          <p className={`text-4xl font-bold ${isGood ? 'text-green-700' : 'text-red-700'}`}>{score}</p>
+        <div className="bg-white/70 dark:bg-black/30 rounded-lg p-4 mb-4 text-center">
+          <span className="text-xs text-gray-500 dark:text-gray-400">Patient Score</span>
+          <p className={`text-4xl font-bold ${isGood ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>{score}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="bg-white/70 rounded-lg p-3">
-            <span className="text-xs text-gray-500">Avg Health</span>
-            <p className="text-xl font-bold text-gray-800">{avgHealth.toFixed(1)}</p>
+          <div className="bg-white/70 dark:bg-black/30 rounded-lg p-3">
+            <span className="text-xs text-gray-500 dark:text-gray-400">Avg Health</span>
+            <p className="text-xl font-bold text-gray-800 dark:text-gray-200">{avgHealth.toFixed(1)}</p>
           </div>
-          <div className="bg-white/70 rounded-lg p-3">
-            <span className="text-xs text-gray-500">Recurrences</span>
-            <p className="text-xl font-bold text-gray-800">{sim.recurrenceCount}</p>
+          <div className="bg-white/70 dark:bg-black/30 rounded-lg p-3">
+            <span className="text-xs text-gray-500 dark:text-gray-400">Recurrences</span>
+            <p className="text-xl font-bold text-gray-800 dark:text-gray-200">{sim.recurrenceCount}</p>
           </div>
-          <div className="bg-white/70 rounded-lg p-3">
-            <span className="text-xs text-gray-500">Days Survived</span>
-            <p className="text-xl font-bold text-gray-800">{sim.tick}</p>
+          <div className="bg-white/70 dark:bg-black/30 rounded-lg p-3">
+            <span className="text-xs text-gray-500 dark:text-gray-400">Days Survived</span>
+            <p className="text-xl font-bold text-gray-800 dark:text-gray-200">{sim.tick}</p>
           </div>
-          <div className="bg-white/70 rounded-lg p-3">
-            <span className="text-xs text-gray-500">Antibiotic Courses</span>
-            <p className="text-xl font-bold text-gray-800">{sim.antibioticCoursesGiven}</p>
+          <div className="bg-white/70 dark:bg-black/30 rounded-lg p-3">
+            <span className="text-xs text-gray-500 dark:text-gray-400">Antibiotic Courses</span>
+            <p className="text-xl font-bold text-gray-800 dark:text-gray-200">{sim.antibioticCoursesGiven}</p>
           </div>
         </div>
 
-        <div className="bg-white/70 rounded-lg p-3 mb-4 text-xs text-gray-500">
+        <div className="bg-white/70 dark:bg-black/30 rounded-lg p-3 mb-4 text-xs text-gray-500 dark:text-gray-400">
           <p>Score = avg health × 0.7 − recurrences × 10 (max penalty 30)</p>
         </div>
 
-        <p className={`text-sm mb-6 leading-relaxed ${isGood ? 'text-green-700' : 'text-red-700'}`}>
+        <p className={`text-sm mb-6 leading-relaxed ${isGood ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
           {educationalMessage}
         </p>
 
@@ -91,7 +91,7 @@ export default function GameSummary({ onBack }: GameSummaryProps) {
           </button>
           <button
             onClick={onBack}
-            className="w-full py-3 rounded-lg font-semibold text-gray-600 bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
+            className="w-full py-3 rounded-lg font-semibold text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
           >
             ← Back to Landing
           </button>

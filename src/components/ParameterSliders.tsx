@@ -16,8 +16,8 @@ function Slider({ label, description, min, max, step, value, onChange, format }:
   return (
     <div>
       <div className="flex justify-between items-center mb-1">
-        <label className="text-sm font-medium text-gray-700">{label}</label>
-        <span className="text-sm font-mono text-gray-500">{format ? format(value) : value.toFixed(2)}</span>
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</label>
+        <span className="text-sm font-mono text-gray-500 dark:text-gray-400">{format ? format(value) : value.toFixed(2)}</span>
       </div>
       <input
         type="range"
@@ -26,9 +26,9 @@ function Slider({ label, description, min, max, step, value, onChange, format }:
         step={step}
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+        className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
       />
-      <p className="text-xs text-gray-400 mt-1">{description}</p>
+      <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{description}</p>
     </div>
   )
 }
@@ -51,27 +51,27 @@ export default function ParameterSliders() {
   }
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors rounded-lg"
+        className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors rounded-lg"
       >
         <span>Advanced Settings</span>
-        <span className="text-gray-400">{open ? '\u25B2' : '\u25BC'}</span>
+        <span className="text-gray-400 dark:text-gray-500">{open ? '\u25B2' : '\u25BC'}</span>
       </button>
 
       {open && (
-        <div className="px-4 pb-4 space-y-5 border-t border-gray-100 pt-4">
+        <div className="px-4 pb-4 space-y-5 border-t border-gray-100 dark:border-gray-700 pt-4">
           {/* Seed Input */}
           <div>
-            <label className="text-sm font-medium text-gray-700 block mb-1">Simulation Seed</label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-1">Simulation Seed</label>
             <div className="flex gap-2">
               <input
                 type="number"
                 value={seedInput}
                 onChange={(e) => setSeedInput(e.target.value)}
                 placeholder="Enter seed number..."
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-300"
               />
               <button
                 onClick={handleStartWithSeed}
@@ -80,7 +80,7 @@ export default function ParameterSliders() {
                 Start with Seed
               </button>
             </div>
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
               Use the same seed as your classmates for identical starting conditions.
             </p>
           </div>
@@ -124,7 +124,7 @@ export default function ParameterSliders() {
             onChange={setCommensalRecovery}
           />
 
-          <p className="text-xs text-gray-400 italic">
+          <p className="text-xs text-gray-400 dark:text-gray-500 italic">
             C. diff virulence is active. Other parameter tuning will be applied in a future update. The seed input is functional.
           </p>
         </div>

@@ -11,10 +11,17 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { useSimulation } from '../state/SimulationContext'
+import { useTheme } from '../context/ThemeContext'
 
 export default function PopulationChart() {
   const { state } = useSimulation()
+  const { isDark } = useTheme()
   const history = state.simulation.history
+
+  const axisColor = isDark ? '#9ca3af' : '#374151'
+  const tooltipStyle = isDark
+    ? { backgroundColor: '#1f2937', border: '1px solid #374151', color: '#f3f4f6' }
+    : { backgroundColor: '#ffffff', border: '1px solid #e5e7eb', color: '#111827' }
 
   // Scale internal 0-1 values to 0-100 for display
   const chartData = useMemo(
@@ -32,26 +39,29 @@ export default function PopulationChart() {
   return (
     <div className="space-y-4">
       {/* Population chart */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Population Dynamics</h2>
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Population Dynamics</h2>
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={chartData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
             stackOffset="none"
           >
             <XAxis
               dataKey="tick"
-              label={{ value: 'Day', position: 'insideBottomRight', offset: -5 }}
-              tick={{ fontSize: 12 }}
+              label={{ value: 'Day', position: 'insideBottomRight', offset: -5, fill: axisColor }}
+              tick={{ fontSize: 12, fill: axisColor }}
+              stroke={axisColor}
             />
             <YAxis
               domain={[0, 100]}
               allowDataOverflow={true}
-              label={{ value: 'Abundance', angle: -90, position: 'insideLeft', offset: 10 }}
-              tick={{ fontSize: 12 }}
+              label={{ value: 'Abundance', angle: -90, position: 'insideLeft', offset: 10, fill: axisColor }}
+              tick={{ fontSize: 12, fill: axisColor }}
+              stroke={axisColor}
             />
             <Tooltip
               formatter={(value) => Number(value).toFixed(1)}
               labelFormatter={(label) => `Day ${label}`}
+              contentStyle={tooltipStyle}
             />
             <Legend />
 
@@ -78,31 +88,35 @@ export default function PopulationChart() {
       </div>
 
       {/* Health & Toxin chart */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4">
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Patient Health & Toxin</h2>
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Patient Health & Toxin</h2>
         <ResponsiveContainer width="100%" height={200}>
           <ComposedChart data={chartData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
             <XAxis
               dataKey="tick"
-              label={{ value: 'Day', position: 'insideBottomRight', offset: -5 }}
-              tick={{ fontSize: 12 }}
+              label={{ value: 'Day', position: 'insideBottomRight', offset: -5, fill: axisColor }}
+              tick={{ fontSize: 12, fill: axisColor }}
+              stroke={axisColor}
             />
             <YAxis
               yAxisId="health"
               domain={[0, 100]}
-              label={{ value: 'Health', angle: -90, position: 'insideLeft', offset: 10 }}
-              tick={{ fontSize: 12 }}
+              label={{ value: 'Health', angle: -90, position: 'insideLeft', offset: 10, fill: axisColor }}
+              tick={{ fontSize: 12, fill: axisColor }}
+              stroke={axisColor}
             />
             <YAxis
               yAxisId="toxin"
               orientation="right"
               domain={[0, 'auto']}
-              label={{ value: 'Toxin', angle: 90, position: 'insideRight', offset: 10 }}
-              tick={{ fontSize: 12 }}
+              label={{ value: 'Toxin', angle: 90, position: 'insideRight', offset: 10, fill: axisColor }}
+              tick={{ fontSize: 12, fill: axisColor }}
+              stroke={axisColor}
             />
             <Tooltip
               formatter={(value) => Number(value).toFixed(1)}
               labelFormatter={(label) => `Day ${label}`}
+              contentStyle={tooltipStyle}
             />
             <Legend />
 
