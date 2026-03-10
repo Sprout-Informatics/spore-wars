@@ -61,7 +61,7 @@ The patient dashboard is organized into four main areas:
 
 **Treatment Decisions**
 - **Give Antibiotics** — Kills bacteria broadly (commensals and C. diff alike). C. diff spores survive.
-- **Give Microbiome Therapy** — Delivers a SER-109-like consortium of commensal and therapeutic spores that restore competitive exclusion.
+- **Give Microbiome Therapy** — Delivers a consortium of commensal and therapeutic spores that restore competitive exclusion.
 
 **Time Controls** (below Treatment Decisions)
 - **+1 Day** — Advance the simulation by a single day.
@@ -83,7 +83,7 @@ The **Gut Sample — DNA Sequencing** panel simulates taking a stool sample and 
 2. Go to [NCBI BLAST (blastn)](https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome).
 3. Paste the sequence and click **BLAST**.
 4. Examine the top hits — what organism does this sequence match?
-5. Use the reference table below to determine whether the species is a host commensal, a SER-109 therapeutic bacterium, or *C. diff*.
+5. Use the reference list below to determine whether the species is a host commensal, a microbiome therapeutic bacterium, or *C. diff*.
 
 **Educator note:** A **"Reveal answers (educators only)"** toggle beneath the sequence list shows the identity and category of each sequence in the current sample, for classroom verification.
 
@@ -97,43 +97,33 @@ The **Gut Sample — DNA Sequencing** panel simulates taking a stool sample and 
 
 ## Bacterial species reference
 
-Use this table when interpreting BLAST results. All sequences in the simulation are drawn from the species listed here.
+Use this list when interpreting BLAST results. All sequences in the simulation are drawn from the species listed here.
 
-### Host commensal bacteria
+**Host commensal bacteria**
 
-These species represent the healthy gut microbiome. They suppress *C. difficile* through competitive exclusion.
+- *Akkermansia muciniphila*
+- *Bacteroides fragilis*
+- *Bifidobacterium longum*
+- *Blautia obeum*
+- *Coprococcus eutactus*
+- *Dorea formicigenerans*
+- *Enterococcus faecalis*
+- *Eubacterium rectale*
+- *Faecalibacterium prausnitzii*
+- *Lactobacillus acidophilus*
+- *Prevotella copri*
+- *Roseburia intestinalis*
+- *Ruminococcus gnavus*
 
-| Species | Phylum | Role in the gut |
-|---|---|---|
-| *Bacteroides fragilis* | Bacteroidetes | Immune education; degrades complex polysaccharides |
-| *Faecalibacterium prausnitzii* | Firmicutes | Most abundant Firmicutes in healthy gut; major butyrate producer |
-| *Roseburia intestinalis* | Firmicutes | Butyrate producer; supports gut barrier function and reduces inflammation |
-| *Bifidobacterium longum* | Actinobacteria | Produces acetate and lactate; probiotic properties |
-| *Lactobacillus acidophilus* | Firmicutes | Lactic acid producer; colonizes small intestine; probiotic properties |
-| *Eubacterium rectale* | Firmicutes | Abundant butyrate producer; member of Lachnospiraceae |
-| *Ruminococcus gnavus* | Firmicutes | Mucin-degrading commensal; produces SCFAs; part of core gut microbiome |
-| *Prevotella copri* | Bacteroidetes | Common in plant-rich diets; degrades dietary polysaccharides |
-| *Akkermansia muciniphila* | Verrucomicrobia | Mucin-degrading; associated with gut barrier integrity and metabolic health |
-| *Blautia obeum* | Firmicutes | Lachnospiraceae family commensal; butyrate producer |
-| *Coprococcus eutactus* | Firmicutes | Short-chain fatty acid (SCFA) producer; associated with gut health |
-| *Dorea formicigenerans* | Firmicutes | Lachnospiraceae family commensal; formate producer |
-| *Enterococcus faecalis* | Firmicutes | Gut and oral commensal; can become opportunistic under dysbiosis |
+**Microbiome therapeutic bacteria**
 
-### SER-109 / Vowst therapeutic bacteria
+- *Blautia hydrogenotrophica*
+- *Clostridium hiranonis*
+- *Clostridium scindens*
 
-These are the key species delivered by the SER-109 (Vowst) microbiome therapeutic. They engraft rapidly after dosing and competitively suppress *C. difficile*. In the simulation, samples taken after therapy administration will be dominated by these species.
+**Pathogenic bacteria**
 
-| Species | Phylum | Therapeutic mechanism |
-|---|---|---|
-| *Clostridium scindens* | Firmicutes | Converts primary to secondary bile acids (e.g., deoxycholate), inhibiting *C. diff* spore germination |
-| *Blautia hydrogenotrophica* | Firmicutes | Hydrogen-consuming acetogen; part of the therapeutic Firmicutes spore consortium |
-| *Clostridium hiranonis* | Firmicutes | Secondary bile acid producer; directly competes with *C. diff* for the intestinal niche |
-
-### Virulent / pathogenic bacteria
-
-| Species | Phylum | Disease relevance |
-|---|---|---|
-| *Clostridioides difficile* | Firmicutes | Spore-forming opportunistic pathogen; produces toxins A and B that damage the intestinal lining; causes C. diff colitis when the gut microbiome is disrupted by antibiotics |
+- *Clostridioides difficile*
 
 ---
 
