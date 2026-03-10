@@ -25,10 +25,10 @@ export default function TimeControls() {
   }, [gameOver])
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-gray-700">Time Controls</h3>
-        <span className="text-sm text-gray-500">
+        <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Time Controls</h3>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
           Day {sim.tick} / {DEFAULTS.MAX_SIMULATION_TICKS}
         </span>
       </div>
